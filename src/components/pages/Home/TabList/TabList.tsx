@@ -108,6 +108,25 @@ interface Data {
   tabList: [];
 }
 
+interface TabPanel{
+  id: number;  
+  name: string;  
+  slug: string;  
+  category: string;  
+  category_id: number;  
+  primary_image: string;  
+  status_value: number;  
+  status: string;  
+  price: number;  
+  quantity: number;  
+  description: string;  
+  is_sale: boolean;  
+  sale_price: number;  
+  date_on_sale_from: string; // تاریخ به صورت String، می‌توان از نوع Date هم استفاده کرد  
+  date_on_sale_to: string; // تاریخ به صورت String، می‌توان از نوع Date هم استفاده کرد  
+  images: ProductImage[];  
+}
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -165,34 +184,21 @@ const TabList: React.FC = () => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          {data?.tabList.map((item) => {
+          {data?.tabList.map((item:[]) => {
             console.log(item);
-            
-            return(
-                <Tab label={item} {...a11yProps(0)} />
-            )
+
+            return <Tab label={item} {...a11yProps(0)} />;
           })}
-          {/* <Tab label="Item One" {...a11yProps(0)} /> */}
-          {/* <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} /> */}
-
-
-          {/* {data.map((item, index) => (  
-            <Tab label={item} {...a11yProps(index)} key={index} />  
-          ))}   */}
         </Tabs>
       </AppBar>
-      {/* {data.map((item, index) => (  
-        <TabPanel value={value} index={index} dir={theme.direction} key={index}>  
-          {item}  
-        </TabPanel>  
-      ))}   */}
 
-      {data?.tabList.map(()=>{
-        return(
-            h1
-        )
-      })}
+      {data?.tabPanel.map((elem: []) =>
+        elem.map((item: TabPanel) => {
+          console.log("item", item);
+
+          return <h1>{item.name}</h1>;
+        })
+      )}
       <TabPanel value={value} index={0} dir={theme.direction}>
         Item One
       </TabPanel>
@@ -202,8 +208,6 @@ const TabList: React.FC = () => {
       <TabPanel value={value} index={2} dir={theme.direction}>
         Item Three
       </TabPanel>
-
-
     </Box>
   );
 };

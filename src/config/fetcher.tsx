@@ -13,4 +13,4 @@ const getFetch = async (url: string) => {
     throw new Error(`مشکل در دریافت اطلاعات : ${res.statusText}`);
   }
 };
-export { getFetch}
+export { getFetch }
