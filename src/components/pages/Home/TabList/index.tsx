@@ -10,6 +10,9 @@ import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { Data, TabPanel, TabPanelProps, Timage } from "./type";
 import Image from "next/image";
+import { Button, Divider } from "@mui/material";
+import { RiPulseAiLine, RiPulseLine } from "@remixicon/react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -24,7 +27,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -60,66 +63,73 @@ const TabList: React.FC = () => {
   return (
     <Box
       sx={{ bgcolor: "background.paper", width: "50%" }}
-      className="mt-[100px] mx-auto"
+      className="mt-[100px] mx-auto !w-[75%] "
     >
-      <AppBar position="static">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="inherit"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          {data?.tabList.map((item: [], index: number) => {
-            // console.log(item);
+      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+      <Skeleton count={3} /> 
+        <AppBar position="static">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            textColor="inherit"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            {data?.tabList.map((item: [], index: number) => {
+              // console.log(item);
 
-            return <Tab label={item} key={index} {...a11yProps(0)} />;
-          })}
-        </Tabs>
-      </AppBar>
+              return <Tab label={item} key={index} {...a11yProps(0)} />;
+            })}
+          </Tabs>
+        </AppBar>
 
-      {data?.tabPanel.map((elem: []) =>
-        elem.map((item: TabPanel) => {
-          //   console.log("item", item);
-          return (
-            <TabPanel
-              key={item.id}
-              value={value}
-              index={item.category_id - 1}
-              dir={theme.direction}
-            >
-              <div className="flex flex-col justify-center items-center gap-x-5">
-                <div className="flex">
-                  {item.images.map((elem: Timage) => {
-                    return (
-                      <div className="flex ">
-                        <Image
-                          width={200}
-                          height={200}
-                          alt=""
-                          src={elem.image}
-                        />
-                      </div>
-                    );
-                  })}
-                 
+        {data?.tabPanel.map((elem: []) =>
+          elem.map((item: TabPanel) => {
+            //   console.log("item", item);
+            const images = item.images as {
+              id: number;
+              product_id: number;
+              image: string;
+            }[];
+            return (
+              <TabPanel
+                key={item.id}
+                value={value}
+                index={item.category_id - 1}
+                dir={theme.direction}
+              >
+                <div className="flex gap-x-6 justify-end">
+                  <div className="flex flex-col justify-center items-end gap-y-6 ">
+                    <div>{item.name}</div>
+                    <div className="text-right border-b-2 border-gray-500 pb-7 border-dashed">
+                      {item.description}
+                    </div>
+                    <div className="flex flex-row-reverse gap-x-2">
+                      <p> {item.price}</p>
+                      <span>تومان</span>
+                    </div>
+                    <RiPulseAiLine />
+                    <Button></Button>
+                  </div>
+                  {images.length > 0 && (
+                    <div className="flex ">
+                      <Image
+                        width={400}
+                        height={400}
+                        alt=""
+                        src={images[0].image}
+                        className="rounded-2xl"
+                      />
+                    </div>
+                  )}
+                  {/* <Divider /> */}
                 </div>
-                <div>{item.name}</div>
-              </div>
-            </TabPanel>
-          );
-        })
-      )}
-      {/* <TabPanel value={value} index={0} dir={theme.direction}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1} dir={theme.direction}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2} dir={theme.direction}>
-        Item Three
-      </TabPanel> */}
+              </TabPanel>
+            );
+          })
+        )}
+      </SkeletonTheme>
     </Box>
   );
 };

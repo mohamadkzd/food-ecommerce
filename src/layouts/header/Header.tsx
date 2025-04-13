@@ -1,7 +1,7 @@
 "use client";
 
 import sidebar from "@/data/sidebar/sidebar";
-import { Button } from "@mui/material";
+import { Button, Input, TextField, ThemeProvider } from "@mui/material";
 import {
   RiSearch2Line,
   RiShoppingCartFill,
@@ -33,6 +33,12 @@ const Header = () => {
           </div>
           <div className="flex justify-center items-center gap-x-4">
             <div className="border-[1px] border-[#810D07] rounded-[5px] p-2">
+              {/* <Input/> */}
+              {/* <ThemeProvider theme={Input} >
+                <TextField label="Outlined" />
+                <TextField label="Filled" variant="filled" />
+                <TextField label="Standard" variant="standard" />
+              </ThemeProvider> */}
               <RiSearch2Line size={30} color="#810D07" />
             </div>
             <div className="bg-[#810D07] rounded-[10px]">
@@ -55,11 +61,9 @@ const Header = () => {
             {/* <MuiButtons.Primary>پروفایل</MuiButtons.Primary> */}
           </div>
         </div>
-       
 
         {/* <div className="absolute top-0 right-0 w-[9000px] h-[200px] bg-red-500"></div> */}
       </header>
-   
     </div>
   );
 };

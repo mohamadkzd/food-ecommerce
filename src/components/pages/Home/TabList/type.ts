@@ -26,9 +26,9 @@ export interface TabPanel {
   sale_price: number;
   date_on_sale_from: string; // تاریخ به صورت String، می‌توان از نوع Date هم استفاده کرد
   date_on_sale_to: string; // تاریخ به صورت String، می‌توان از نوع Date هم استفاده کرد
-  images: [[], []];
+  images: [];
 }
 
 export interface Timage {
-  image: [{},{}];
+  image: [];
 }
