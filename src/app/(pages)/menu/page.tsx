@@ -25,7 +25,7 @@ const MenuPage = () => {
   console.log("test", data);
 
   return (
-    <div className="container mx-auto">
+    <div >
       <h1>menu page lorem</h1>
     </div>
   );

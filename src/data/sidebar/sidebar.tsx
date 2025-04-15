@@ -33,7 +33,7 @@ const sidebar = [
       {
         id: 3,
         name: "علاقه مندی ها",
-        linkAddress: "/about",
+        linkAddress: "/favorite",
         icon: <RiHeartLine />,
         isActive: true,
       },
