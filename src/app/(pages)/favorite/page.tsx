@@ -1,5 +1,6 @@
 "use client";
 
+import { LinearProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
@@ -19,9 +20,9 @@ const FavoritePage = () => {
       );
     },
   });
-  if (isPending) return "Loading...";
+  if (isPending) return <LinearProgress className="pb-1 mb-10"  />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) return  error.message;
 
   console.log(data);
 
